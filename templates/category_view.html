@@ -1,0 +1,33 @@
+<link rel="stylesheet" href="/static/style.css">
+
+<div class="container">
+
+<h2>{{category}}</h2>
+
+{% for f in files %}
+
+<div class="card">
+
+<b>{{f.filename}}</b>
+
+<p>Uploaded: {{f.time}}</p>
+
+<p>Confidence: {{f.percent}}%</p>
+
+<div class="progress">
+<div class="bar {{f.color}}" style="width:{{f.percent}}%"></div>
+</div>
+
+<p>{{f.preview}}</p>
+
+<a href="/download/{{category}}/{{f.filename}}">Download</a>
+
+</div>
+
+{% endfor %}
+
+<br>
+
+<a href="/categories">← Back</a>
+
+</div>
