@@ -1,0 +1,49 @@
+<link rel="stylesheet" href="/static/style.css">
+
+<div class="container">
+
+<h2>AI Document Classification</h2>
+
+<form method="post" enctype="multipart/form-data">
+
+<input type="file" name="file"><br><br>
+
+<button>Upload & Classify</button>
+
+</form>
+
+{% if category %}
+
+<div class="card">
+
+<b>Predicted Category:</b> {{category}}
+
+<p>Confidence: {{percent}}%</p>
+
+<div class="progress">
+<div class="bar {{color}}" style="width:{{percent}}%"></div>
+</div>
+
+<form method="post" action="/request_review">
+
+<input type="hidden" name="filename" value="{{filename}}">
+
+<textarea name="message" placeholder="Request manual review"></textarea>
+
+<button>Request Manual Review</button>
+
+</form>
+
+</div>
+
+{% endif %}
+
+<br>
+
+<a href="/categories">📂 View Categories</a>
+<br>
+<a href="/admin">Admin Panel</a>
+<br>
+<a href="/logout">Logout</a>
+
+</div>
