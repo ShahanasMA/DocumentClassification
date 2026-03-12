@@ -1,0 +1,40 @@
+<link rel="stylesheet" href="/static/style.css">
+
+<div class="container">
+
+<h2>Admin Review Panel</h2>
+
+{% for r in data %}
+
+<div class="card">
+
+<b>{{r.filename}}</b>
+
+<p>Current Category: {{r.category}}</p>
+
+<p>User Message: {{r.message}}</p>
+
+<form method="post" action="/admin/update">
+
+<input type="hidden" name="doc_id" value="{{r.id}}">
+
+<select name="new_category">
+
+<option>HR</option>
+<option>Legal</option>
+<option>Finance</option>
+<option>Administration</option>
+
+</select>
+
+<button>Approve Correction</button>
+
+</form>
+
+</div>
+
+{% endfor %}
+
+<a href="/">Back</a>
+
+</div>
