@@ -1,36 +1,46 @@
-<link rel="stylesheet" href="/static/style.css">
+{% extends "base.html" %}
+{% block content %}
 
-<div class="container">
+<h2>Upload Document</h2>
 
-<h2>AI Document Classification</h2>
-
+<!-- STEP 1: Upload -->
 <form method="post" enctype="multipart/form-data">
-
-<input type="file" name="file"><br><br>
-
-<button>Upload & Classify</button>
-
+    <input type="file" name="file" required>
+    <button type="submit">Upload</button>
 </form>
 
 {% if category %}
 
+<!-- STEP 2: RESULT -->
 <div class="card">
 
-<b>Predicted Category:</b> {{category}}
+<h3>Prediction Result</h3>
 
-<p>Confidence: {{percent}}%</p>
+<p><b>File:</b> {{filename}}</p>
+<p><b>Predicted Category:</b> {{category}}</p>
+<p><b>Confidence:</b> {{percent}}%</p>
 
 <div class="progress">
-<div class="bar {{color}}" style="width:{{percent}}%"></div>
+    <div class="bar {{color}}" style="width:{{percent}}%"></div>
 </div>
+
+</div>
+
+<!-- STEP 3: REQUEST CORRECTION -->
+<div class="card">
+
+<h3>Request Correction</h3>
 
 <form method="post" action="/request_review">
 
 <input type="hidden" name="filename" value="{{filename}}">
+<input type="hidden" name="category" value="{{category}}">
 
-<textarea name="message" placeholder="Request manual review"></textarea>
+<textarea name="message" placeholder="Explain why this is wrong..." required style="width:100%;height:80px;"></textarea>
 
-<button>Request Manual Review</button>
+<br><br>
+
+<button type="submit">Send to Admin</button>
 
 </form>
 
@@ -38,12 +48,4 @@
 
 {% endif %}
 
-<br>
-
-<a href="/categories">📂 View Categories</a>
-<br>
-<a href="/admin">Admin Panel</a>
-<br>
-<a href="/logout">Logout</a>
-
-</div>
+{% endblock %}
