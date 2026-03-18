@@ -1,8 +1,13 @@
-<link rel="stylesheet" href="/static/style.css">
-
-<div class="container">
+{% extends "base.html" %}
+{% block content %}
 
 <h2>{{category}}</h2>
+
+<form method="get">
+    <input type="text" name="search" placeholder="Search documents..." value="{{search}}">
+</form>
+
+<br>
 
 {% for f in files %}
 
@@ -15,12 +20,17 @@
 <p>Confidence: {{f.percent}}%</p>
 
 <div class="progress">
-<div class="bar {{f.color}}" style="width:{{f.percent}}%"></div>
+    <div class="bar {{f.color}}" style="width:{{f.percent}}%"></div>
 </div>
 
 <p>{{f.preview}}</p>
 
-<a href="/download/{{category}}/{{f.filename}}">Download</a>
+<br>
+
+<!-- 🔥 VIEW PAGE (FIXED) -->
+<a href="/view/{{category}}/{{f.filename}}?source=category">📂 Open</a>
+|
+<a href="/download/{{category}}/{{f.filename}}">⬇ Download</a>
 
 </div>
 
@@ -30,4 +40,4 @@
 
 <a href="/categories">← Back</a>
 
-</div>
+{% endblock %}
