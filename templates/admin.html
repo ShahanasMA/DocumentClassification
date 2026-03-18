@@ -1,40 +1,58 @@
-<link rel="stylesheet" href="/static/style.css">
-
-<div class="container">
+{% extends "base.html" %}
+{% block content %}
 
 <h2>Admin Review Panel</h2>
 
 {% for r in data %}
 
+{% if r.status == "pending" %}
+<div class="card" style="border-left:5px solid red;">
+{% else %}
 <div class="card">
+{% endif %}
 
 <b>{{r.filename}}</b>
 
-<p>Current Category: {{r.category}}</p>
+<p><b>Category:</b> {{r.category}}</p>
+<p><b>Message:</b> {{r.message}}</p>
 
-<p>User Message: {{r.message}}</p>
+<p>
+<b>Status:</b>
+{% if r.status == "pending" %}
+<span style="color:red;">Pending ⏳</span>
+{% else %}
+<span style="color:green;">Resolved ✅</span>
+{% endif %}
+</p>
 
+<br>
+
+<!-- 🔥 UPDATED VIEW SYSTEM -->
+<a href="/view/{{r.category}}/{{r.filename}}?source=admin">📂 Open</a>
+|
+<a href="/download/{{r.category}}/{{r.filename}}">⬇ Download</a>
+
+<br><br>
+
+{% if r.status == "pending" %}
 <form method="post" action="/admin/update">
 
 <input type="hidden" name="doc_id" value="{{r.id}}">
 
 <select name="new_category">
-
 <option>HR</option>
 <option>Legal</option>
 <option>Finance</option>
 <option>Administration</option>
-
 </select>
 
 <button>Approve Correction</button>
 
 </form>
+{% endif %}
 
 </div>
 
 {% endfor %}
 
-<a href="/">Back</a>
-
-</div>
+{% endblock %}
