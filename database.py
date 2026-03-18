@@ -2,13 +2,26 @@ import sqlite3
 
 DB = "database.db"
 
-def get_db():
-    return sqlite3.connect(DB)
-
 def init_db():
-    conn = get_db()
+
+    conn = sqlite3.connect(DB)
     cur = conn.cursor()
 
+    # USERS TABLE (✅ added department)
+    cur.execute("""
+    CREATE TABLE IF NOT EXISTS users(
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        name TEXT,
+        email TEXT,
+        username TEXT UNIQUE,
+        password TEXT,
+        role TEXT,
+        status TEXT,
+        department TEXT
+    )
+    """)
+
+    # DOCUMENTS TABLE
     cur.execute("""
     CREATE TABLE IF NOT EXISTS documents(
         id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -22,6 +35,7 @@ def init_db():
     )
     """)
 
+    # REVIEW REQUEST TABLE
     cur.execute("""
     CREATE TABLE IF NOT EXISTS review_requests(
         id INTEGER PRIMARY KEY AUTOINCREMENT,
