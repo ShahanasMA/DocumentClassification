@@ -1,17 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Login</title>
 <link rel="stylesheet" href="/static/style.css">
 
-<div class="container">
-<h2>Welcome Back</h2>
+<style>
+body{
+    background: linear-gradient(135deg,#667eea,#764ba2);
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    margin:0;
+}
+
+.login-box{
+    background:white;
+    padding:40px;
+    width:350px;
+    border-radius:12px;
+    box-shadow:0 8px 20px rgba(0,0,0,0.2);
+    text-align:center;
+}
+
+.login-box h2{
+    margin-bottom:20px;
+}
+
+.login-box input{
+    width:100%;
+    padding:12px;
+    margin:10px 0;
+    border-radius:8px;
+    border:1px solid #ccc;
+}
+
+.login-box button{
+    width:100%;
+    padding:12px;
+    background:#667eea;
+    color:white;
+    border:none;
+    border-radius:8px;
+    font-size:16px;
+    cursor:pointer;
+}
+
+.login-box button:hover{
+    background:#5a67d8;
+}
+
+.login-box a{
+    display:block;
+    margin-top:15px;
+    color:#667eea;
+    text-decoration:none;
+}
+
+.error{
+    color:red;
+    margin-top:10px;
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="login-box">
+
+<h2>AI Document System</h2>
+<p style="color:#666;">Sign in to continue</p>
 
 <form method="post">
 
-<input name="username" placeholder="Username" required><br><br>
-<input name="password" type="password" placeholder="Password" required><br><br>
+<input type="text" name="username" placeholder="Username" required>
 
-<button>Login</button>
+<input type="password" name="password" placeholder="Password" required>
+
+<button type="submit">Login</button>
 
 </form>
 
-<p style="color:red">{{error}}</p>
+<a href="/register">Create Account</a>
+
+<p class="error">{{error}}</p>
 
 </div>
+
+</body>
+</html>
