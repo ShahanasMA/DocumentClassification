@@ -1,6 +1,6 @@
-<link rel="stylesheet" href="/static/style.css">
+{% extends "base.html" %}
 
-<div class="container">
+{% block content %}
 
 <h2>Categories</h2>
 
@@ -14,8 +14,4 @@
 
 {% endfor %}
 
-<br>
-
-<a href="/">← Back</a>
-
-</div>
+{% endblock %}
