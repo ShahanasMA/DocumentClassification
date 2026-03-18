@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h2>Notifications</h2>
+
+{% if notifications %}
+    {% for n in notifications %}
+        <div class="card">
+            {{n}}
+        </div>
+    {% endfor %}
+{% else %}
+    <p>No new notifications</p>
+{% endif %}
+
+{% endblock %}
