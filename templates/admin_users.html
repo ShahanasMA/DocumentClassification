@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h2>User Approval</h2>
+
+{% for u in users %}
+
+<div class="card">
+
+<h3>{{u[1]}}</h3>
+
+<p><b>Username:</b> {{u[2]}}</p>
+<p><b>Email:</b> {{u[5]}}</p>
+<p><b>Department:</b> {{u[4]}}</p>
+
+<p>
+<b>Status:</b> 
+{% if u[3] == "pending" %}
+<span style="color:red;">Pending ⏳</span>
+{% else %}
+<span style="color:green;">Approved ✅</span>
+{% endif %}
+</p>
+
+{% if u[3] == "pending" %}
+<a href="/admin/approve/{{u[0]}}" style="color:green;">✔ Approve</a>
+|
+<a href="/admin/reject/{{u[0]}}" style="color:red;">❌ Reject</a>
+{% endif %}
+
+</div>
+
+{% endfor %}
+
+{% endblock %}
