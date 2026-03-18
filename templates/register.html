@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Register</title>
+<link rel="stylesheet" href="/static/style.css">
+
+<style>
+body{
+    background: linear-gradient(135deg,#667eea,#764ba2);
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    margin:0;
+    font-family:Arial;
+}
+
+.register-box{
+    background:white;
+    padding:40px;
+    width:360px;
+    border-radius:15px;
+    box-shadow:0 10px 25px rgba(0,0,0,0.2);
+    text-align:center;
+}
+
+.register-box h2{
+    margin-bottom:20px;
+    color:#333;
+}
+
+.register-box input,
+.register-box select{
+    width:100%;
+    padding:12px;
+    margin:10px 0;
+    border-radius:8px;
+    border:1px solid #ccc;
+    outline:none;
+    transition:0.3s;
+}
+
+.register-box input:focus,
+.register-box select:focus{
+    border-color:#667eea;
+    box-shadow:0 0 5px rgba(102,126,234,0.5);
+}
+
+.register-box button{
+    width:100%;
+    padding:12px;
+    background:#667eea;
+    color:white;
+    border:none;
+    border-radius:8px;
+    font-size:16px;
+    cursor:pointer;
+    margin-top:10px;
+    transition:0.3s;
+}
+
+.register-box button:hover{
+    background:#5a67d8;
+}
+
+.register-box a{
+    display:block;
+    margin-top:15px;
+    color:#667eea;
+    text-decoration:none;
+    font-size:14px;
+}
+
+.msg{
+    margin-top:10px;
+    font-size:14px;
+    color:green;
+}
+
+.error{
+    color:red;
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="register-box">
+
+<h2>User Registration</h2>
+
+<form method="post">
+
+<input name="name" placeholder="Full Name" required>
+
+<input type="email" name="email" placeholder="Email Address" required>
+
+<input name="username" placeholder="Username" required>
+
+<input type="password" name="password" placeholder="Password (min 6 chars)" minlength="6" required>
+
+<input type="password" name="confirm" placeholder="Confirm Password" minlength="6" required>
+
+<select name="department" required>
+<option value="">Select Department</option>
+<option value="HR">HR</option>
+<option value="Finance">Finance</option>
+<option value="Legal">Legal</option>
+<option value="Administration">Administration</option>
+</select>
+
+<button type="submit">Register</button>
+
+</form>
+
+{% if msg %}
+<p class="msg">{{msg}}</p>
+{% endif %}
+
+<a href="/login">Already have an account? Login</a>
+
+</div>
+
+</body>
+</html>
